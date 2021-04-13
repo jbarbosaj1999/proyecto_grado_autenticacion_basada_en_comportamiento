@@ -516,8 +516,7 @@ function calculardatos(hola) {
   }
 }
 
-function saveData() {
-  document.getElementById("saveData").disabled.innerHTML("Espere, esto puede tomar unos minutos.")
+function saveData() {  
   var user = document.getElementById("usuario").value;
   var jsonDUseq = JSON.stringify(DUseq);
   localStorage.setItem(user + 'DatosDU', jsonDUseq);
