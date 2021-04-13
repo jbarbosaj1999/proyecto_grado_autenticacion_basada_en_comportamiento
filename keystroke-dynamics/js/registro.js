@@ -427,7 +427,7 @@ function captureKeyEvent(e) {
     document.getElementById("count").innerHTML = 21 - DUseq.length;
   if(DUseq.length > 20)
   {
-    document.getElementById("saveData").disabled = false;
+    document.getElementById("saveData").style.visibility = "visible";
     alert("Se ha entrenado, se a activado la opcion de guardar contraseña. esto termina el registro")    
   }
     return;
@@ -555,7 +555,7 @@ function saveData() {
   var jsonUUNNNE = JSON.stringify(uunnne);
   localStorage.setItem(user + 'DatosUUNNNE', jsonUUNNNE);
 
-  document.getElementById("continuar").hidden= false;
+  document.getElementById("continuar").style.visibility = "visible"
 }
 
 function loadData() {
