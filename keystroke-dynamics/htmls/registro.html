@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <title>
+    Registro
+  </title>
+
+<head> 
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	<link rel="stylesheet" href="..\css\estilos.css">
+
+  <script src="..\js\Chart.min.js"></script>
+  <script src="..\js\ml.min.js"></script>
+  <script src="..\js\math.min.js"></script>
+  <script src="..\js\neataptic.js"></script>
+  <script src="..\js\registro.js"></script>  
+</head>
+<body>
+<div class="container">
+  <div class="chart-container" style=" left:  0px; top: 0px; right: 0px; bottom: 0px;">
+    <H1 align="center" style="font-family:verdana; font-size:30">Registro</H1>
+    <div class="container" style="align-items: center;">      
+      <button id="saveData" class="button" hidden> Este boton te permite entrenar el modelo con los datos</button>  
+    </div>
+    <p>Se recomienda una contraseña de 6 a 10 caracteres, con la cual el usuario se sienta familiar (ya que debe repetirla).</p>
+    <p>Número de repeticiones faltantes</p>
+    <p id=count>21</p>
+
+   <canvas text="center" id="textEntry" width="2000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 800px;"></canvas>
+  <div class="contenedor" style="align-items: center;">
+    <a  id="regresar" class="button"  href="registrarvista.html"> regresar</a> 
+   <a  id="continuar" class="button" href="inicio.html" hidden> Continuar</a> 
+  </div>
+  
+  </div>
+</div>    
+</body>
+</html>

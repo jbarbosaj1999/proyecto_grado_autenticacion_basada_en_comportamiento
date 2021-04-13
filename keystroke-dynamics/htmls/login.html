@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet"  href="https://www.w3schools.com/lib/w3.css" >
+    <link rel="stylesheet" href="..\css\estilos.css">
+    <script src="..\js\login.js"></script> 
+    <script src="..\js\Chart.min.js"></script>
+    <script src="..\js\ml.min.js"></script>
+    <script src="..\js\math.min.js"></script>
+    <script src="..\js\neataptic.js"></script>
+
+
+</head>
+
+<body>
+    <div class="formulario">
+
+        <h1>Login</h1>
+        <div class="contenedor">
+
+
+
+           
+
+            <div class="input-contenedor" id="contenedor" onclick="loadData()">
+                <i class="fas fa-key icon"></i>
+                <input type="password" id="textEntry" placeholder="Contraseña">
+            </div>
+            <button class="button" enabled="flase"> comprobar </button>
+        
+        </div>
+    </div>
+    
+    <p id="Autenticidad" class="w3-opacity" style="visibility: hidden;" >
+        no clasificado
+      </p>
+    
+      <p id="Autenticidad2" class="w3-opacity" style="visibility: hidden;" >
+        no clasificado
+      </p>
+      
+      <p id="Autenticidad3" class="w3-opacity" style="visibility: hidden;" >
+        no clasificado
+      </p>
+      <label class="switch"  style=" visibility: hidden"> <input type="checkbox" id="testCheck" > <span class="slider round"></span> </label>
+  
+</body>
+
+</html>

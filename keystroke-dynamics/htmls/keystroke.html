@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <title>
+    Keystroke Dynamics Demo
+  </title>
+
+<head>
+  <meta charset='utf-8'>
+  <link rel="stylesheet" type="text/css" href="..\css\styles.css" media="screen">
+  <link rel="stylesheet"  href="https://www.w3schools.com/lib/w3.css" >
+
+
+  <script src="..\js\Chart.min.js"></script>
+  <script src="..\js\ml.min.js"></script>
+  <script src="..\js\math.min.js"></script>
+  <script src="..\js\neataptic.js"></script>
+  <script src="..\js\keystroke.js"></script>  
+</head>
+<body>
+<div class="container">
+  <div class="chart-container" style=" left:  0px; top: 0px; right: 0px; bottom: 0px;">
+    <H1 align=center style="font-family:verdana; font-size:30">Distance Classifier</H1>
+    <div class="container" style="align-items: center;">
+      <button id="loadData" class="w3-button w3-blue " disabled> Este boton te permite cargar los datos</button>
+      <button id="saveData" class="w3-button w3-green" disabled> Este boton te permite guardar los datos</button>  
+      <button id="reTrain" class="w3-button w3-yellow" disabled> Este boton te permite re-entrenar</button> 
+      <button id="reTrainTot" class="w3-button w3-yellow" disabled> Este boton te permite re-entrenar totalmente</button> 
+      <button id="exportar" class="w3-button w3-rd" > Exportar</button> 
+      <input class="text" id="usuario" placeholder="Nombre de usuario"></input>
+    </div>
+
+    <canvas id="textEntry" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 800px;"></canvas>
+    <table>
+      <tr>
+        <td rowspan=5>
+          <table>
+            <tr>
+              <td> 
+                <H4 style="font-family:verdana; font-size:20">Modo de autenticación</H4>
+              </td> 
+              <td> 
+                <!-- Rounded switch -->
+                <label class="switch"  style=" visibility: hidden"> <input type="checkbox" id="testCheck" "> <span class="slider round"></span> </label>
+              </td>
+            </tr>
+            <tr>
+              <td> 
+                <H4 style="font-family:verdana; font-size:20">Neural Network</H4>
+              </td> 
+              <td> 
+                <!-- Rounded switch -->
+                <label class="switch"> <input type="checkbox" id="nnpredict" onclick="showNN()"> <span class="slider round"></span> </label>
+              </td>
+            </tr>
+            <tr>
+              <td> 
+                <H4 style="font-family:verdana; font-size:20">Neuro Evolution</H4>
+              </td> 
+              <td> 
+                <!-- Rounded switch -->
+                <label class="switch"> <input type="checkbox" id="nepredict" onclick="showNE()"> <span class="slider round"></span> </label>
+              </td>
+            </tr>
+            <tr>
+
+            </tr>
+          </table>
+        </td>
+        <th>Feature</th>
+        <th>Train</th>
+        <th>Test</th>
+      </tr>
+      <tr>
+        <td>DOWN-UP</td>
+        <td id=dutrain></td>
+        <td id=dutest></td>
+      </tr>
+      <tr>
+        <td>UP-DOWN</td>
+        <td id=udtrain></td>
+        <td id=udtest></td>
+      </tr>
+      <tr>
+        <td>DOWN-DOWN</td>
+        <td id=ddtrain></td>
+        <td id=ddtest></td>
+      </tr>
+      <tr>
+        <td>UP-UP</td>
+        <td id=uutrain> </td>
+        <td id=uutest></td>
+      </tr>
+      <tr>
+        <td>Count</td>
+        <td id=count></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <p id="Autenticidad" class="w3-opacity" style="visibility: hidden;" >
+      no clasificado
+    </p>
+  
+    <p id="Autenticidad2" class="w3-opacity" style="visibility: hidden;" >
+      no clasificado
+    </p>
+    
+  </div>
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="DUChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="UDChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="DDChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="UUChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <H1 id="nnheader" align=center style="visibility: hidden; font-family:verdana; font-size:50"> Neural Network </H1>
+    <table id="nntable" style="visibility: hidden;">
+      <tr>
+        <th>Feature</th>
+        <th>Neural Network</th>
+        <th>Distance Classifier</th>
+      </tr>
+      <tr>
+        <td>DOWN-UP</td>
+        <td id=dunnpred></td>
+        <td id=dunnsmd></td>
+      </tr>
+      <tr>
+        <td>UP-DOWN</td>
+        <td id=udnnpred></td>
+        <td id=udnnsmd></td>
+      </tr>
+      <tr>
+        <td>DOWN-DOWN</td>
+        <td id=ddnnpred></td>
+        <td id=ddnnsmd></td>
+      </tr>
+      <tr>
+        <td>DOWN-DOWN</td>
+        <td id=uunnpred></td>
+        <td id=uunnsmd></td>
+      </tr>
+    </table>
+  </div>
+
+  <p id="Autenticidad" class="w3-opacity" style="visibility: hidden;" >
+    no clasificado
+  </p>
+
+  <p id="Autenticidad2" class="w3-opacity" style="visibility: hidden;" >
+    no clasificado
+  </p>
+
+
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="DUNNChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="UDNNChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="DDNNChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <canvas id="UUNNChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+
+
+  <div class="chart-container" style=" left: 0px; top: 0px; right: 0px; bottom: 0px;">
+    <H1 id="neheader" align=center style="visibility: hidden; font-family:verdana; font-size:50"> Neuro-Evolutionary Network </H1>
+    <table id="netable" style="visibility: hidden;">
+      <tr>
+        <th>Feature</th>
+        <th>Neuro-Evolutionary Network</th>
+        <th>Neural Network</th>
+        <th>Distance Classifier</th>
+      </tr>
+      <tr>
+        <td>DOWN-UP</td>
+        <td id=dunepred></td>
+        <td id=dunnpred_></td>
+        <td id=dunnsmd_></td>
+      </tr>
+      <tr>
+        <td>UP-DOWN</td>
+        <td id=udnepred></td>
+        <td id=udnnpred_></td>
+        <td id=udnnsmd_></td>
+      </tr>
+      <tr>
+        <td>DOWN-DOWN</td>
+        <td id=ddnepred></td>
+        <td id=ddnnpred_></td>
+        <td id=ddnnsmd_></td>
+      </tr>
+      <tr>
+        <td>UP-UP</td>
+        <td id=uunepred></td>
+        <td id=uunnpred_></td>
+        <td id=uunnsmd_></td>
+      </tr>
+    </table>
+  </div>
+  <div class="chart-container" style=" align-self: auto;">
+    <canvas id="DUNEChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" align-self: auto">
+    <canvas id="UDNEChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" align-self: auto">
+    <canvas id="DDNEChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" align-self: auto">
+    <canvas id="UUNEChart" width="1000" height="500" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+
+
+  <div class="chart-container" style=" align-self: auto">
+    <canvas id="DU-UD" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" align-self: auto">
+    <canvas id="UD-DD" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+  <div class="chart-container" style=" align-self: auto">
+    <canvas id="DD-DU" class="chartjs-render-monitor" style="display: block; height: 250px; width: 500px;"></canvas>
+  </div>
+</div>
+
+</body>
+</html>
