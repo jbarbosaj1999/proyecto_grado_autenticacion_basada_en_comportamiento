@@ -516,8 +516,7 @@ function calculardatos(hola) {
   }
 }
 
-function saveData() {  
-  var user = document.getElementById("usuario").value;
+function saveData() {    
   var jsonDUseq = JSON.stringify(DUseq);
   localStorage.setItem(user + 'DatosDU', jsonDUseq);
 
@@ -544,16 +543,16 @@ function saveData() {
   var jsonUUNN = JSON.stringify(uunn);
   localStorage.setItem(user + 'DatosUUNN', jsonUUNN);
 
-  var jsonDUNNNE = JSON.stringify(dunnne);
+  var jsonDUNNNE = JSON.stringify(dunenn);
   localStorage.setItem(user + 'DatosDUNNNE', jsonDUNNNE);
 
-  var jsonUDNNNE = JSON.stringify(udnnne);
+  var jsonUDNNNE = JSON.stringify(udnenn);
   localStorage.setItem(user + 'DatosUDNNNE', jsonUDNNNE);
 
-  var jsonDDNNNE = JSON.stringify(ddnnne);
+  var jsonDDNNNE = JSON.stringify(ddnenn);
   localStorage.setItem(user + 'DatosDDNNNE', jsonDDNNNE);
 
-  var jsonUUNNNE = JSON.stringify(uunnne);
+  var jsonUUNNNE = JSON.stringify(uunenn);
   localStorage.setItem(user + 'DatosUUNNNE', jsonUUNNNE);
 
   document.getElementById("continuar").hidden =false;
