@@ -424,8 +424,8 @@ function captureKeyEvent(e) {
       }
 
     }
-    document.getElementById("count").innerHTML = 21 - DUseq.length;
-  if(DUseq.length > 20)
+    document.getElementById("count").innerHTML = 51 - DUseq.length;
+  if(DUseq.length > 50)
   {
     document.getElementById("saveData").hidden =false;
 
