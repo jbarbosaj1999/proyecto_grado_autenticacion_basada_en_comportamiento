@@ -275,13 +275,13 @@ function createNN(hiddenLayers, activation) {
           var trainValueUU = (tvUU2 + tvUU1) / 2;  
   
   
-          var stdDU = (math.std(DUseq.map(smd_for_path)) * 2);
+          var stdDU = (math.std(DUseq.map(smd_for_path)) * 2.8);
   
-          var stdUD = (math.std(UDseq.map(smd_for_path)) * 2);
+          var stdUD = (math.std(UDseq.map(smd_for_path)) * 2.8);
   
-          var stdDD = (math.std(DDseq.map(smd_for_path)) * 2);
+          var stdDD = (math.std(DDseq.map(smd_for_path)) * 2.8);
   
-          var stdUU = (math.std(UUseq.map(smd_for_path)) * 2);
+          var stdUU = (math.std(UUseq.map(smd_for_path)) * 2.8);
   
           //console.log(Math.abs((scaledManhattanDist(DUseq, DU))) + " - " + trainValueDU + " :: " + stdDU);
           //console.log(Math.abs((scaledManhattanDist(UDseq, UD))) + " - " + trainValueUD + " :: " + stdUD);
@@ -344,7 +344,7 @@ function createNN(hiddenLayers, activation) {
 
             //console.log(Math.round(smd_nn(DUseq, DU, dupred[0])),Math.round(smd_nn(UDseq, UD, udpred[0])),Math.round(smd_nn(DDseq, DD, ddpred[0])), Math.round(smd_nn(UUseq, UU, uupred[0])));
 
-            if(Math.round(smd_nn(DUseq, DU, dupred[0])) < 40 && Math.round(smd_nn(UDseq, UD, udpred[0]))< 40 && Math.round(smd_nn(DDseq, DD, ddpred[0])) < 40 && Math.round(smd_nn(UUseq, UU, uupred[0])) < 40){
+            if(Math.round(smd_nn(DUseq, DU, dupred[0])) < 62 && Math.round(smd_nn(UDseq, UD, udpred[0]))< 62 && Math.round(smd_nn(DDseq, DD, ddpred[0])) < 62 && Math.round(smd_nn(UUseq, UU, uupred[0])) < 62){
               document.getElementById("Autenticidad2").innerHTML = "Es auténtico"
               document.getElementById("Autenticidad2").style.visibility = "visible";
               document.getElementById("Autenticidad2").style.backgroundColor = "green";
@@ -364,7 +364,7 @@ function createNN(hiddenLayers, activation) {
             ddnepred = ddnenn.activate(DD);
             uunepred = uunenn.activate(UU);
 
-            if( Math.round(smd_nn(DUseq, DU, dunepred)) < 25 && Math.round(smd_nn(UDseq, UD, udnepred))  < 25 && Math.round(smd_nn(DDseq, DD, ddnepred)) < 25 && Math.round(smd_nn(UUseq, UU, uunepred)) < 25){
+            if( Math.round(smd_nn(DUseq, DU, dunepred)) < 39 && Math.round(smd_nn(UDseq, UD, udnepred))  < 39 && Math.round(smd_nn(DDseq, DD, ddnepred)) < 39 && Math.round(smd_nn(UUseq, UU, uunepred)) < 39){
               document.getElementById("Autenticidad3").innerHTML = "Es auténtico"
               document.getElementById("Autenticidad3").style.visibility = "visible";
               document.getElementById("Autenticidad3").style.backgroundColor = "green";
