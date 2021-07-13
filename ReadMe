@@ -1,0 +1,7 @@
+1.	Diríjase al repositorio del proyecto y descargue o clone el repositorio según su preferencia: 
+https://github.com/jbarbosaj1999/proyecto_grado_autenticacion_basada_en_comportamiento
+2.	Si el archivo este comprimido descomprimirlo y acceder a la carpeta keystroke-dynamics
+3.	Una vez en esta carpeta se puede acceder a 3 subcarpetas en las cuales encontramos los distintos componentes del proyecto.
+4.	Para probar el sistema diríjase a la carpeta htmls y ejecute el archivo inicio.html. Se desplegará una ventana en su navegador por defecto.
+5.	En esta ventana se dará la opción de hacer login o registrarse. Si desea registrarse por favor lea y siga las instrucciones que el sistema proporcionara en cada paso.
+6.	Si ya cuenta con un usuario y contraseña puede realizar una prueba de login desde la pantalla de inicio. Al hacer login se presentarán 3 barras de colores que mostrarán cómo el usuario que realizó el intento fue clasificado por cada modelo clasificador.
